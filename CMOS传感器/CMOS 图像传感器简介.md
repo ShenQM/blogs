@@ -55,7 +55,7 @@ typora-root-url: ./
 3. 在曝光结束后，RS会被再次激活，读出电路会测量PN结内的电压，该电压与原反向电压之间的差，就是PN结接受到的光信号。（在主流sensor设计中，电压差与光强成正比关系）
 4. 在读出感光信号后，会对PN结进行再次reset，准备下次曝光。
 
-![passive pixel](/CMOS 图像传感器简介.assets/passive pixel.PNG)
+![passive pixel](https://github.com/ShenQM/blogs/blob/master/CMOS%E4%BC%A0%E6%84%9F%E5%99%A8/CMOS%20%E5%9B%BE%E5%83%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E7%AE%80%E4%BB%8B.assets/passive%20pixel.PNG?raw=true)
 
 <center>图2.2 像素结构</center>
 
@@ -64,7 +64,7 @@ typora-root-url: ./
 1. 相对读出电路上的寄生电容，PN结的电容相对较小。代表其信号的电压差相对较小，这导致其对电路噪声很敏感。
 2. 如图2.3(b)，PN结的信号，先经过读出电路，才进行放大。这种情况，注入到读出信号的噪声会随着信号一起放大。
 
-![active_passive_noise_compare](/CMOS 图像传感器简介.assets/active_passive_noise_compare.PNG)
+![active_passive_noise_compare](https://github.com/ShenQM/blogs/blob/master/CMOS%E4%BC%A0%E6%84%9F%E5%99%A8/CMOS%20%E5%9B%BE%E5%83%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E7%AE%80%E4%BB%8B.assets/active_passive_noise_compare.PNG?raw=true)
 
 <center>图2.3 Active Pixel和Passive Pixel噪声注入对比</center>
 
@@ -79,13 +79,13 @@ typora-root-url: ./
 3. 读出。在曝光完成后，RS会被激活，PN结中的信号经过运放SF放大后，读出到column bus。
 4. 循环。读出信号后，重新复位，曝光，读出，不断的输出图像信号。
 
-![active_pn_pixel](/CMOS 图像传感器简介.assets/active_pn_pixel.PNG)
+![active_pn_pixel](https://github.com/ShenQM/blogs/blob/master/CMOS%E4%BC%A0%E6%84%9F%E5%99%A8/CMOS%20%E5%9B%BE%E5%83%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E7%AE%80%E4%BB%8B.assets/active_pn_pixel.PNG?raw=true)
 
 <center>图2.4 PN结像素结构</center>
 
 　　基于PN结的Active Pixel流行与90年代中期，它解决了很多噪声问题。但是由PN结复位引入的kTC噪声，并没有得到解决。为了解决复位kTC噪声，减小暗电流，引入了基于PPD结构（Pinned Photodiode Pixel）的像素结构。PPD pixel包括一个PPD的感光区，以及4个晶体管，所以也称为4T像素结构（如图2.5）。PPD的出现，是CMOS性能的巨大突破，它允许相关双采样（CDS）电路的引入，消除了复位引入的kTC噪声，运放器引入的1/f噪声和offset噪声。
 
-![active_ppd_pixel](/CMOS 图像传感器简介.assets/active_ppd_pixel.PNG)
+![active_ppd_pixel](https://github.com/ShenQM/blogs/blob/master/CMOS%E4%BC%A0%E6%84%9F%E5%99%A8/CMOS%20%E5%9B%BE%E5%83%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E7%AE%80%E4%BB%8B.assets/active_ppd_pixel.PNG?raw=true)
 
 <center>图2.5 PPD像素结构</center>
 
@@ -109,7 +109,7 @@ typora-root-url: ./
 
 由于PPD像素结构在暗电流和噪声方面的优异表现，近年来市面上的CMOS传感器都是以PPD结构为主。但是，PPD结构有4个晶体管，有的设计甚至有5个，这大大降低了像素的填充因子（即感光区占整个像素面积的比值），这会影响传感器的光电转换效率，进而影响传感器的噪声表现。在PPD结构中，像素的感光区和读出电路由TX晶体管隔开，相邻像素减可以共用读出电路（如图2.6）。图2.6所示的2x2像素共享读出电路，一共有7个晶体管，平均一个像素1.75个晶体管。这样可以大大减少每个像素中读出电路占用的面积，可以提高填充因子，这样可以使得像素面积更小（比如1微米）。然而，由于这2x2个像素的结构不再一致，会导致固定模式噪声的出现（FPN），这需要在后续图像处理中消除。
 
-![shared_ppd](/CMOS 图像传感器简介.assets/shared_ppd.PNG)
+![shared_ppd](https://github.com/ShenQM/blogs/blob/master/CMOS%E4%BC%A0%E6%84%9F%E5%99%A8/CMOS%20%E5%9B%BE%E5%83%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E7%AE%80%E4%BB%8B.assets/shared_ppd.PNG?raw=true)
 
 <center>图2.6 共享读出电路的PPD像素结构</center>
 
