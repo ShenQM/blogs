@@ -1,0 +1,339 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>CMOS 图像传感器简介</title><link href='night/mermaid.dark.css' rel='stylesheet' type='text/css' />
+<link href='night/codeblock.dark.css' rel='stylesheet' type='text/css' />
+<link href='night/sourcemode.dark.css' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; padding-bottom: 70px; white-space: pre-wrap; overflow-x: visible; }
+.first-line-indent #write p .md-line { text-indent: 0px; }
+.first-line-indent #write li, .first-line-indent #write p, .first-line-indent #write p .md-line:first-child { text-indent: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write > blockquote:first-child, #write > div:first-child, #write > figure:first-child, #write > ol:first-child, #write > p:first-child, #write > pre:first-child, #write > ul:first-child { margin-top: 30px; }
+#write li > figure:first-child { margin-top: -20px; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+h1, h2, h3, h4, h5, h6 { margin-top: 1rem; margin-bottom: 1rem; }
+p { -webkit-margin-before: 1rem; -webkit-margin-after: 1rem; -webkit-margin-start: 0px; -webkit-margin-end: 0px; }
+.mathjax-block { margin-top: 0px; margin-bottom: 0px; -webkit-margin-before: 0px; -webkit-margin-after: 0px; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 80px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+pre { white-space: pre-wrap; }
+pre.contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+.md-fences.mock-cm { white-space: pre-wrap; }
+.show-fences-line-number .md-fences { padding-left: 0px; }
+.show-fences-line-number .md-fences.mock-cm { padding-left: 40px; }
+.CodeMirror-line { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+.footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 1cm; padding-right: 1cm; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  @page { margin: 20mm 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > img:only-child { display: block; margin: auto; }
+.md-line > .md-image:only-child, p > .md-image:only-child { display: inline-block; width: 100%; text-align: center; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.mathjax-block { white-space: pre; overflow: hidden; width: 100%; }
+p + .mathjax-block { margin-top: -1.143rem; }
+.mathjax-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, tt { font-family: var(--monospace); }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; }
+a.md-print-anchor { border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.mathjax-block .MathJax_SVG_Display { text-align: center; margin: 1em 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: monospace; }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+
+
+.cm-s-inner .cm-variable, .cm-s-inner .cm-operator, .cm-s-inner .cm-property { color: rgb(184, 191, 198); }
+.cm-s-inner .cm-keyword { color: rgb(200, 143, 208); }
+.cm-s-inner .cm-tag { color: rgb(125, 244, 106); }
+.cm-s-inner .cm-attribute { color: rgb(117, 117, 228); }
+.CodeMirror div.CodeMirror-cursor { border-left: 1px solid rgb(184, 191, 198); z-index: 3; }
+.cm-s-inner .cm-string { color: rgb(210, 107, 107); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(218, 146, 74); }
+.cm-s-inner .cm-header, .cm-s-inner .cm-def, .cm-s-inner.cm-header, .cm-s-inner.cm-def { color: rgb(141, 141, 240); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(87, 172, 87); }
+.cm-s-inner .cm-hr { color: rgb(216, 213, 213); }
+.cm-s-inner .cm-link { color: rgb(211, 211, 239); }
+.cm-s-inner .cm-negative { color: rgb(217, 80, 80); }
+.cm-s-inner .cm-positive { color: rgb(80, 230, 80); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta, .cm-s-inner .cm-qualifier { color: rgb(183, 179, 179); }
+.cm-s-inner .cm-builtin { color: rgb(243, 179, 248); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(132, 182, 203); }
+.cm-s-inner .cm-number { color: rgb(100, 171, 143); }
+.cm-s-inner .cm-variable { color: rgb(184, 191, 198); }
+.cm-s-inner .cm-variable-2 { color: rgb(159, 186, 213); }
+.cm-s-inner .cm-variable-3 { color: rgb(28, 198, 133); }
+.CodeMirror-selectedtext, .CodeMirror-selected { background: rgb(74, 137, 220); text-shadow: none; color: rgb(255, 255, 255) !important; }
+
+
+:root { --bg-color: #363B40; --side-bar-bg-color: #2E3033; --text-color: #b8bfc6; --select-text-bg-color:#4a89dc; --control-text-color: #b7b7b7; --control-text-hover-color: #eee; --window-border: 1px dashed #9b9b9b; --active-file-bg-color: rgb(34, 34, 34); --active-file-border-color: #8d8df0; --active-file-text-color: white; --item-hover-bg-color: #70717d; --item-hover-text-color: white; --primary-color: #6dc1e7; }
+html { font-size: 16px; }
+html, body { text-size-adjust: 100%; background: var(--bg-color); fill: currentcolor; }
+#write { max-width: 914px; padding-top: 20px; }
+html, body, button, input, select, textarea, div.code-tooltip-content { color: rgb(184, 191, 198); }
+div.code-tooltip, .md-hover-tip .md-arrow::after { background: rgb(75, 83, 90); }
+.popover.bottom > .arrow::after { border-bottom-color: rgb(75, 83, 90); }
+html, body, button, input, select, textarea { font-style: normal; line-height: 1.625rem; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+hr { height: 2px; border: 0px; margin: 24px 0px !important; }
+h1, h2, h3, h4, h5, h6 { font-family: "Lucida Grande", Corbel, sans-serif; font-weight: normal; clear: both; word-wrap: break-word; margin: 0px; padding: 0px; color: rgb(222, 222, 222); }
+h1 { font-size: 2.5rem; line-height: 2.75rem; margin-bottom: 1.5rem; letter-spacing: -1.5px; }
+h2 { font-size: 1.63rem; line-height: 1.875rem; margin-bottom: 1.5rem; letter-spacing: -1px; font-weight: bold; }
+h3 { font-size: 1.17rem; line-height: 1.5rem; margin-bottom: 1.5rem; letter-spacing: -1px; font-weight: bold; }
+h4 { font-size: 1.12rem; line-height: 1.375rem; margin-bottom: 1.5rem; color: white; }
+h5 { font-size: 0.97rem; line-height: 1.25rem; margin-bottom: 1.5rem; font-weight: bold; }
+h6 { font-size: 0.93rem; line-height: 1rem; margin-bottom: 0.75rem; color: white; }
+@media (min-width: 980px) {
+  h3.md-focus::before, h4.md-focus::before, h5.md-focus::before, h6.md-focus::before { color: rgb(221, 221, 221); border: 1px solid rgb(221, 221, 221); border-radius: 3px; position: absolute; left: -1.64286rem; top: 0.357143rem; float: left; font-size: 9px; padding-left: 2px; padding-right: 2px; vertical-align: bottom; font-weight: normal; line-height: normal; }
+  h3.md-focus::before { content: "h3"; }
+  h4.md-focus::before { content: "h4"; }
+  h5.md-focus::before { content: "h5"; top: 0px; }
+  h6.md-focus::before { content: "h6"; top: 0px; }
+}
+a { text-decoration: none; outline: 0px; }
+a:hover { outline: 0px; }
+a:focus { outline: dotted thin; }
+sup.md-footnote { background-color: rgb(85, 85, 85); color: rgb(221, 221, 221); }
+p { word-wrap: break-word; }
+p, ul, dd, ol, hr, address, pre, table, iframe, .wp-caption, .wp-audio-shortcode, .wp-video-shortcode { margin-top: 0px; margin-bottom: 1.5rem; }
+audio:not([controls]) { display: none; }
+[hidden] { display: none; }
+.in-text-selection, ::selection { background: rgb(74, 137, 220); color: rgb(255, 255, 255); text-shadow: none; }
+ul, ol { padding: 0px 0px 0px 1.875rem; }
+ul { list-style: square; }
+ol { list-style: decimal; }
+ul ul, ol ol, ul ol, ol ul { margin: 0px; }
+b, th, dt, strong { font-weight: bold; }
+i, em, dfn, cite { font-style: italic; }
+blockquote { margin: 35px 0px 1.875rem 1.875rem; border-left: 2px solid rgb(71, 77, 84); padding-left: 30px; }
+pre, code, kbd, tt, var { background: rgba(0, 0, 0, 0.05); font-size: 0.875rem; font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace; }
+pre.md-fences { padding: 10px 30px; margin-bottom: 20px; border: 1px solid; }
+.md-fences .code-tooltip { bottom: -3.2em; }
+code, kbd, tt, var { padding: 2px 5px; }
+table { max-width: 100%; width: 100%; border-collapse: collapse; border-spacing: 0px; }
+th, td { padding: 5px 10px; vertical-align: top; }
+a { transition: all 0.2s ease-in-out; }
+hr { background: rgb(71, 77, 84); }
+#write > :first-child { margin-top: 40px; }
+h1 { margin-top: 2em; }
+a { color: rgb(224, 224, 224); text-decoration: underline; }
+a:hover { color: rgb(255, 255, 255); }
+.md-inline-math script { color: rgb(129, 177, 219); }
+b, th, dt, strong { color: rgb(222, 222, 222); }
+mark { background: rgb(211, 212, 14); }
+blockquote { color: rgb(157, 162, 166); }
+table a { color: rgb(222, 222, 222); }
+th, td { border: 1px solid rgb(71, 77, 84); }
+.task-list { padding-left: 0px; }
+.md-task-list-item { padding-left: 1.25rem; }
+.md-task-list-item > input { top: auto; }
+.md-task-list-item > input::before { content: ""; display: inline-block; width: 0.875rem; height: 0.875rem; vertical-align: middle; text-align: center; border: 1px solid rgb(184, 191, 198); background-color: rgb(54, 59, 64); margin-top: -0.4rem; }
+.md-task-list-item > input:checked::before, .md-task-list-item > input[checked]::before { content: "√"; font-size: 0.625rem; line-height: 0.625rem; color: rgb(222, 222, 222); }
+.CodeMirror-gutters { background: transparent; border-right: 1px solid transparent; }
+.auto-suggest-container { border: 0px; background-color: rgb(82, 92, 101); }
+#typora-quick-open { background-color: rgb(82, 92, 101); }
+#typora-quick-open input { background-color: rgb(82, 92, 101); border-width: 0px 0px 1px; border-top-style: initial; border-right-style: initial; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-left-color: initial; border-image: initial; border-bottom-style: solid; border-bottom-color: grey; }
+.typora-quick-open-item { background-color: inherit; color: inherit; }
+.typora-quick-open-item.active { background-color: rgb(77, 139, 219); color: white; }
+.typora-search-spinner > div { background-color: rgb(255, 255, 255); }
+#write pre.md-meta-block { border-bottom: 1px dashed rgb(204, 204, 204); background: transparent; padding-bottom: 0.6em; line-height: 1.6em; }
+.btn, .btn .btn-default { background: transparent; color: rgb(184, 191, 198); }
+.ty-table-edit { border-top: 1px solid gray; background-color: rgb(54, 59, 64); }
+.popover-title { background: transparent; }
+.md-image > .md-meta { color: rgb(187, 187, 187); background: transparent; }
+.md-expand.md-image > .md-meta { color: rgb(221, 221, 221); }
+#write > h3::before, #write > h4::before, #write > h5::before, #write > h6::before { border: none; border-radius: 0px; color: rgb(136, 136, 136); text-decoration: underline; left: -1.4rem; top: 0.2rem; }
+#write > h3.md-focus::before { top: 2px; }
+#write > h4.md-focus::before { top: 2px; }
+.md-toc-item { color: rgb(168, 194, 220); }
+#write div.md-toc-tooltip { background-color: rgb(54, 59, 64); }
+.dropdown-menu .btn:hover, .dropdown-menu .btn:focus, .md-toc .btn:hover, .md-toc .btn:focus { color: white; background: black; }
+#toc-dropmenu { background: rgba(50, 54, 59, 0.93); border: 1px solid rgba(253, 253, 253, 0.15); }
+#toc-dropmenu .divider { background-color: rgb(155, 155, 155); }
+.outline-expander::before { top: 2px; }
+#typora-sidebar { box-shadow: none; border-right: none; }
+.sidebar-tabs { border-bottom: 0px; }
+#typora-sidebar:hover .outline-title-wrapper { border-left: 1px dashed; }
+.outline-title-wrapper .btn { color: inherit; }
+.outline-item:hover { border-color: rgb(54, 59, 64); background-color: rgb(54, 59, 64); color: white; }
+h1.md-focus .md-attr, h2.md-focus .md-attr, h3.md-focus .md-attr, h4.md-focus .md-attr, h5.md-focus .md-attr, h6.md-focus .md-attr, .md-header-span .md-attr { color: rgb(140, 142, 146); display: inline; }
+.md-comment { color: rgb(90, 149, 227); opacity: 1; }
+.md-inline-math g, .md-inline-math svg { stroke: rgb(184, 191, 198) !important; fill: rgb(184, 191, 198) !important; }
+[md-inline="inline_math"] { color: rgb(156, 178, 233); }
+#math-inline-preview .md-arrow::after { background: black; }
+.modal-content { background: var(--bg-color); border: 0px; }
+.modal-title { font-size: 1.5em; }
+.modal-content input { background-color: rgba(26, 21, 21, 0.51); color: white; }
+.modal-content .input-group-addon { background-color: rgba(0, 0, 0, 0.17); color: white; }
+.modal-backdrop { background-color: rgba(174, 174, 174, 0.7); }
+.modal-content .btn-primary { border-color: var(--primary-color); }
+.md-table-resize-popover { background-color: rgb(75, 83, 90); }
+.form-inline .input-group .input-group-addon { color: white; }
+#md-searchpanel { border-bottom: 1px dashed grey; }
+.context-menu { background-color: rgb(66, 70, 74); }
+.context-menu.dropdown-menu .divider { background-color: rgb(119, 119, 119); }
+footer { color: inherit; }
+@media (max-width: 1000px) {
+  footer { border-top: none; }
+  footer:hover { color: inherit; }
+}
+#file-info-file-path .file-info-field-value:hover { background-color: rgb(85, 85, 85); color: rgb(222, 222, 222); }
+.megamenu-content, .megamenu-opened header { background: var(--bg-color); }
+.megamenu-menu-panel h2, .megamenu-menu-panel h1, .long-btn { color: inherit; }
+.megamenu-menu-panel input[type="text"] { background: inherit; border-width: 0px 0px 1px; border-top-style: initial; border-right-style: initial; border-left-style: initial; border-color: initial; border-image: initial; border-bottom-style: solid; }
+#recent-file-panel-action-btn { background: inherit; border: 1px solid grey; }
+.megamenu-menu-panel .btn:hover, .megamenu-menu-panel .btn:focus, .megamenu-menu-panel .btn.focus { color: white; }
+.megamenu-menu-panel .dropdown-menu > li > a { color: inherit; background-color: rgb(47, 53, 58); text-decoration: none; }
+.megamenu-menu-panel table td:nth-child(1) { color: inherit; font-weight: bold; }
+.megamenu-menu-panel tbody tr:hover td:nth-child(1) { color: white; }
+.modal-footer .btn-default, .modal-footer .btn-primary, .modal-footer .btn-default:not(:hover) { border: 1px solid transparent; }
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default { color: white; border: 1px solid rgb(221, 221, 221); background-color: inherit; }
+.modal-header { border-bottom: 0px; }
+.modal-footer { border-top: 0px; }
+#recent-file-panel tbody tr:nth-child(2n-1) { background-color: transparent !important; }
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) { color: inherit; }
+.megamenu-menu-panel .btn { border: 1px solid rgb(238, 238, 238); background: transparent; }
+.mouse-hover .toolbar-icon.btn:hover, #w-full.mouse-hover, #w-pin.mouse-hover { background-color: inherit; }
+.typora-node::-webkit-scrollbar { width: 5px; }
+.typora-node::-webkit-scrollbar-thumb:vertical { background: rgba(250, 250, 250, 0.3); }
+.typora-node::-webkit-scrollbar-thumb:vertical:active { background: rgba(250, 250, 250, 0.5); }
+#w-unpin { background-color: rgb(65, 130, 196); }
+#top-titlebar, #top-titlebar * { color: var(--item-hover-text-color); }
+.typora-sourceview-on #toggle-sourceview-btn, #footer-word-count:hover, .show-word-count #footer-word-count { background: rgb(51, 51, 51); }
+#toggle-sourceview-btn:hover { color: rgb(238, 238, 238); background: rgb(51, 51, 51); }
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) * { color: rgb(104, 104, 104) !important; }
+.on-focus-mode .md-end-block:not(.md-focus) img, .on-focus-mode .md-task-list-item:not(.md-focus-container) > input { }
+.on-focus-mode li[cid]:not(.md-focus-container) { color: rgb(104, 104, 104); }
+.on-focus-mode .md-fences.md-focus .CodeMirror-code > :not(.CodeMirror-activeline) *, .on-focus-mode .CodeMirror.cm-s-inner:not(.CodeMirror-focused) * { color: rgb(104, 104, 104) !important; }
+.on-focus-mode .md-focus, .on-focus-mode .md-focus-container { color: rgb(255, 255, 255); }
+.on-focus-mode #typora-source .CodeMirror-code > :not(.CodeMirror-activeline) * { color: rgb(104, 104, 104) !important; }
+#write .md-focus .md-diagram-panel { border: 1px solid rgb(221, 221, 221); margin-left: -30px; }
+#write.show-fences-line-number .md-focus .md-diagram-panel { margin-left: auto; }
+.md-diagram-panel-error { color: rgb(241, 144, 142); }
+.active-tab-files #info-panel-tab-file, .active-tab-files #info-panel-tab-file:hover, .active-tab-outline #info-panel-tab-outline, .active-tab-outline #info-panel-tab-outline:hover { color: rgb(238, 238, 238); }
+.sidebar-footer-item:hover, .footer-item:hover { background: inherit; color: white; }
+.ty-side-sort-btn.active, .ty-side-sort-btn:hover, .selected-folder-menu-item a::after { color: white; }
+#sidebar-files-menu { border: 1px solid; box-shadow: rgba(0, 0, 0, 0.79) 4px 4px 20px; background-color: var(--bg-color); }
+.file-list-item { border-bottom: none; }
+.file-list-item-summary { opacity: 1; }
+.file-list-item.active:first-child { border-top: none; }
+.sidebar-footer { border-top: 1px solid rgb(85, 85, 85); }
+.file-node-background { height: 32px; }
+.file-library-node.active > .file-node-content, .file-list-item.active { color: var(--active-file-text-color); }
+.file-library-node.active > .file-node-background { background-color: var(--active-file-bg-color); }
+.file-list-item.active { background-color: var(--active-file-bg-color); }
+#ty-tooltip { background-color: black; color: rgb(238, 238, 238); }
+#write { cursor: -webkit-image-set(url("night/cursor.png") 1x, url("night/cursor@2x.png") 2x) 8 8, auto; }
+.md-task-list-item > input { margin-left: -1.3em; margin-top: calc(1rem - 10px); -webkit-appearance: none; }
+
+
+
+
+
+ .typora-export p, .typora-export .footnote-line {white-space: normal;} 
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><h1><a name='header-n2' class='md-header-anchor '></a>CMOS 图像传感器简介（1）：像素结构</h1><p>　　随着工艺的发展，CMOS图像传感器的性能已经赶上或超越CCD，再加上CMOS图像传感器在工艺上能很大程度与传统CMOS芯片兼容，它已经成为相机的主流传感器类型。由于只能硬件的迅猛发展，很多应用场景都将碰到CMOS传感器，因此本文从基础出发，介绍CMOS图像传感器的像素结构。 </p><h2><a name='header-n5' class='md-header-anchor '></a>1.图像传感器整体架构</h2><p>　　CMOS图像传感器本质是一块芯片，主要包括：感光区阵列（Bayer阵列，或叫像素阵列）、时序控制、模拟信号处理以及模数转换等模块（如图1）。其中，各模块的作用分别为：</p><ul><li>像素阵列：完成光电转换，将光子转换为电子。</li><li>时序控制：控制电信号的读出、传递。</li><li>模拟信号处理（ADC）：对信号去噪。（如用CDS去除reset noise、fpn等）</li></ul><p><img src='http://micro.magnet.fsu.edu/primer/digitalimaging/images/cmos/cmoschipsfigure1.jpg' alt='CMOS图像传感器结构' referrerPolicy='no-referrer' /></p><p><center>图1.1 CMOS传感器示例</center></p><p>其中，像素阵列占整个芯片的面积最大，像素阵列是由一个个像素组成，它对应到我们看到每张图片中的每个像素。每个像素包括感光区和读出电路（后面小节会详细讨论），每个像素的信号经由模拟信号处理后，交由ADC进行模数转换后即可输出到数字处理模块。像素阵列的信号读出如下（参考图1.2）：</p><ol start='' ><li>每个像素在进行reset，进行曝光。</li><li>行扫描寄存器，一行一行的激活像素阵列中的行选址晶体管。</li><li>列扫描寄存器，对于每一行像素，一个个的激活像素的列选址晶体管。</li><li>读出信号，并进行放大。</li></ol><p><center></p><p><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/CMOS_Image_Sensor_Mechanism_Illustration.svg/2000px-CMOS_Image_Sensor_Mechanism_Illustration.svg.png' alt='CMOS传感器示意图' referrerPolicy='no-referrer' /></center></p><p><center>图1.2 CMOS传感器信号读出示意图</center></p><h2><a name='header-n43' class='md-header-anchor '></a>2.图像传感器像素结构</h2><p>　　CMOS传感器上的主要部件是像素阵列，这是其与传统芯片的主要区别。每个像素的功能是将感受到的光转换为电信号，通过读出电路转为数字化信号，从而完成现实场景数字化的过程。像素阵列中的每个像素结构是一样的，如图2.1是典型的前照式像素结构，其主要结构包括：</p><ol start='' ><li>On-chip-lens:该结构可以理解为在感光元件上覆盖的一层微透镜阵列，它用来将光线聚集在像素感光区的开口上。可以增加光电转化效率，减少相邻像素之间的光信号串扰。</li><li>Color filter：该结构是一个滤光片，包括红/绿/蓝三种，分别只能透过红色、绿色、蓝色对应波长的光线。该滤光片结构的存在，使得每个像素只能感应一种颜色，另外的两种颜色分量需要通过相邻像素插值得到，即demosaic算法。</li><li>Metal wiring：可以为金属排线，用于读出感光区的信号（其实就是像素内部的读出电路）。</li><li>Photodiode：即光电信号转换器，其转换出的电信号会经过金属排线读出。</li></ol><p><img src='http://www.extremetech.com/wp-content/uploads/2013/03/Wiring-diagram-for-a-typical-front-illuminated-sensor.gif' alt='像素结构' referrerPolicy='no-referrer' /></p><p><center>图2.1 像素结构</center></p><p>其中，Photodiode和Metal wiring对CMOS传感器的性能影响最大（比如光电转换效率，读出噪声等），也是目前主流传感器厂商注重提高的工艺。为了方便叙述，下面将Photodiode和Metal wiring简称为Pixel（即包括每个像素内的感光区域和读出电路）。</p><h3><a name='header-n65' class='md-header-anchor '></a>2.1 Passive Pixel</h3><p>　　最简单的Pixel结构只有一个PN结作为photodiode感光，以及一个与它相连的reset晶体管作为一个开关（如图2.2）。它的工作方式如下：</p><ol start='' ><li>在开始曝光之前，该像素的行选择地址会上电（图中未画出），从而RS会激活，连通PN结与column bus。同时列选择器会上电，此时PN结会被加载高反向电压（例如3.3 V）。在Reset（即PN结内电子空穴对达到平衡）完成后，RS将会被停止激活，停止PN结与column bus的连通。</li><li>在曝光时间内，PN结内的硅在吸收光线后，会产生电子-空穴对。由于PN结内电场的影响，电子-空穴对会分成两个电荷载体，电子会流向PN结的<span class="MathJax_Preview"></span><span class="MathJax_SVG" id="MathJax-Element-5-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.904ex" height="2.178ex" viewBox="0 -832 1250.1 937.7" role="img" focusable="false" style="vertical-align: -0.246ex;"><defs><path stroke-width="0" id="E5-MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E5-MJMAIN-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E5-MJMATHI-6E" x="0" y="0"></use><use transform="scale(0.707)" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E5-MJMAIN-2B" x="848" y="513"></use></g></svg></span><script type="math/tex" id="MathJax-Element-5">n^+</script>端，空穴会流向PN结的p-substrate。因此，经过曝光后的的PN结，其反向电压会降低。</li><li>在曝光结束后，RS会被再次激活，读出电路会测量PN结内的电压，该电压与原反向电压之间的差，就是PN结接受到的光信号。（在主流sensor设计中，电压差与光强成正比关系）</li><li>在读出感光信号后，会对PN结进行再次reset，准备下次曝光。</li></ol><p><img src='https://github.com/ShenQM/blogs/blob/master/CMOS%E4%BC%A0%E6%84%9F%E5%99%A8/CMOS%20%E5%9B%BE%E5%83%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E7%AE%80%E4%BB%8B.assets/passive%20pixel.PNG?raw=true' alt='passive pixel' referrerPolicy='no-referrer' /></p><p><center>图2.2 像素结构</center></p><p>这种像素结构，其读出电路完全位于像素外面，称为Passive Pixel。Passive Pixel的读出电路简单，整个Pixel的面积可以大部分用于构造PN结，所以其满阱电容一般会高于其他结构。但是，由于其信号的读出电路位于Pixel外面，它受到电路噪声的影响比Active Pixel（下一节会介绍）大。Passivel Pixel噪声较大有2个主要原因：</p><ol start='' ><li>相对读出电路上的寄生电容，PN结的电容相对较小。代表其信号的电压差相对较小，这导致其对电路噪声很敏感。</li><li>如图2.3(b)，PN结的信号，先经过读出电路，才进行放大。这种情况，注入到读出信号的噪声会随着信号一起放大。</li></ol><p><img src='https://github.com/ShenQM/blogs/blob/master/CMOS%E4%BC%A0%E6%84%9F%E5%99%A8/CMOS%20%E5%9B%BE%E5%83%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E7%AE%80%E4%BB%8B.assets/active_passive_noise_compare.PNG?raw=true' alt='active_passive_noise_compare' referrerPolicy='no-referrer' /></p><p><center>图2.3 Active Pixel和Passive Pixel噪声注入对比</center></p><h3><a name='header-n98' class='md-header-anchor '></a>2.2 Active Pixel</h3><p>　　Active Pixel指的是在像素内部有信号读出电路和放大电路的像素结构。如图2.3(a)，信号传出Pixel之前，就已经读出并放大，这减少了读出信号对噪声的敏感性。随着工艺的发展，基于Active Pixel的CMOS传感器在暗电流和噪声表现上有很大提升，Active Pixel结构随之成为了CMOS传感器的主流设计。</p><p>　　图2.4展示了基于PN结的Active Pixel结构，也成为3T像素结构（每个像素包含3个三极管）。在这种结构中，每个像素包含一个PN结作为感光元件，一个复位三极管RST，一个行选择器RS，以及一个信号放大器SF。其工作方式和Passive Pixel类似：</p><ol start='' ><li>复位。给PN结加载反向电压，或者说激活RST给PN结进行复位。复位完成后，不再导通RST。</li><li>曝光。和在Passive Pixel中一样，光子打到PN结及硅基，被吸收后产生电子-空穴对。这些电子空穴对通过电场移动后，减小PN结上的反向电压。</li><li>读出。在曝光完成后，RS会被激活，PN结中的信号经过运放SF放大后，读出到column bus。</li><li>循环。读出信号后，重新复位，曝光，读出，不断的输出图像信号。</li></ol><p><img src='https://github.com/ShenQM/blogs/blob/master/CMOS%E4%BC%A0%E6%84%9F%E5%99%A8/CMOS%20%E5%9B%BE%E5%83%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E7%AE%80%E4%BB%8B.assets/active_pn_pixel.PNG?raw=true' alt='active_pn_pixel' referrerPolicy='no-referrer' /></p><p><center>图2.4 PN结像素结构</center></p><p>　　基于PN结的Active Pixel流行与90年代中期，它解决了很多噪声问题。但是由PN结复位引入的kTC噪声，并没有得到解决。为了解决复位kTC噪声，减小暗电流，引入了基于PPD结构（Pinned Photodiode Pixel）的像素结构。PPD pixel包括一个PPD的感光区，以及4个晶体管，所以也称为4T像素结构（如图2.5）。PPD的出现，是CMOS性能的巨大突破，它允许相关双采样（CDS）电路的引入，消除了复位引入的kTC噪声，运放器引入的1/f噪声和offset噪声。</p><p><img src='https://github.com/ShenQM/blogs/blob/master/CMOS%E4%BC%A0%E6%84%9F%E5%99%A8/CMOS%20%E5%9B%BE%E5%83%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E7%AE%80%E4%BB%8B.assets/active_ppd_pixel.PNG?raw=true' alt='active_ppd_pixel' referrerPolicy='no-referrer' /></p><p><center>图2.5 PPD像素结构</center></p><p>　　仔细对比图2.4和2.5，发现示意图右边的结构基本一致。但他们的功能有明显差异，对于PPD，右边部分电路只是信号读出电路。读出电路与光电转换结构通过TX完全隔开，这样可以将光感区的设计和读出电路完全隔离开，有利于各种信号处理电路的引入（如CDS，DDS等）。另外，PPD感光区的设计采用的是p-n-p结构，减小了暗电流。PPD像素的工作方式如下：</p><ol start='' ><li>曝光。光照射产生的电子-空穴对会因PPD电场的存在而分开，电子移向n区，空穴移向p区。</li><li>复位。在曝光结束时，激活RST，将读出区（<span class="MathJax_Preview"></span><span class="MathJax_SVG" id="MathJax-Element-5-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.904ex" height="2.178ex" viewBox="0 -832 1250.1 937.7" role="img" focusable="false" style="vertical-align: -0.246ex;"><defs><path stroke-width="0" id="E5-MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E5-MJMAIN-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E5-MJMATHI-6E" x="0" y="0"></use><use transform="scale(0.707)" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E5-MJMAIN-2B" x="848" y="513"></use></g></svg></span><script type="math/tex" id="MathJax-Element-5">n^+</script>区）复位到高电平。</li><li>复位电平读出。复位完成后，读出复位电平，其中包含运放的offset噪声，1/f噪声以及复位引入的kTC噪声，将读出的信号存储在第一个电容中。</li><li>电荷转移。激活TX，将电荷从感光区完全转移到<span class="MathJax_Preview"></span><span class="MathJax_SVG" id="MathJax-Element-5-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.904ex" height="2.178ex" viewBox="0 -832 1250.1 937.7" role="img" focusable="false" style="vertical-align: -0.246ex;"><defs><path stroke-width="0" id="E5-MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E5-MJMAIN-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E5-MJMATHI-6E" x="0" y="0"></use><use transform="scale(0.707)" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E5-MJMAIN-2B" x="848" y="513"></use></g></svg></span><script type="math/tex" id="MathJax-Element-5">n^+</script>区用于读出，这里的机制类似于CCD中的电荷转移。</li><li>信号电平读出。接下来，将<span class="MathJax_Preview"></span><span class="MathJax_SVG" id="MathJax-Element-5-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.904ex" height="2.178ex" viewBox="0 -832 1250.1 937.7" role="img" focusable="false" style="vertical-align: -0.246ex;"><defs><path stroke-width="0" id="E5-MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E5-MJMAIN-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E5-MJMATHI-6E" x="0" y="0"></use><use transform="scale(0.707)" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E5-MJMAIN-2B" x="848" y="513"></use></g></svg></span><script type="math/tex" id="MathJax-Element-5">n^+</script>区的电压信号读出到第二个电容。这里的信号包括：光电转换产生的信号，运放产生的offset，1/f噪声以及复位引入的kTC噪声。</li><li>信号输出。将存储在两个电容中的信号相减（如采用CDS，即可消除Pixel中的主要噪声），得到的信号在经过模拟放大，然后经过ADC采样，即可进行数字化信号输出。</li></ol><p>　　PPD像素结构有如下优点：</p><ul><li>读出结构（<span class="MathJax_Preview"></span><span class="MathJax_SVG" id="MathJax-Element-5-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.904ex" height="2.178ex" viewBox="0 -832 1250.1 937.7" role="img" focusable="false" style="vertical-align: -0.246ex;"><defs><path stroke-width="0" id="E5-MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E5-MJMAIN-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E5-MJMATHI-6E" x="0" y="0"></use><use transform="scale(0.707)" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E5-MJMAIN-2B" x="848" y="513"></use></g></svg></span><script type="math/tex" id="MathJax-Element-5">n^+</script>区）的kTC噪声完全被CDS消除。</li><li>运放器的offset和1/f噪声，都会因CDS得到明显改善。</li><li>感光结构因复位引起的kTC噪声，由于PPD电荷的全转移，变的不再存在。</li><li>光敏感度，它直接取决于耗尽区的宽度，由于PPD的耗尽区一直延伸到近<span class="MathJax_Preview"></span><span class="MathJax_SVG" id="MathJax-Element-7-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="10.264ex" height="2.298ex" viewBox="0 -780.1 4419 989.6" role="img" focusable="false" style="vertical-align: -0.487ex;"><defs><path stroke-width="0" id="E7-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path><path stroke-width="0" id="E7-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E7-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path stroke-width="0" id="E7-MJMATHI-4F" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path><path stroke-width="0" id="E7-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E7-MJMATHI-53" x="0" y="0"></use><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E7-MJMATHI-69" x="645" y="0"></use><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E7-MJMAIN-2212" x="1212" y="0"></use><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E7-MJMATHI-53" x="2212" y="0"></use><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E7-MJMATHI-69" x="2857" y="0"></use><g transform="translate(3202,0)"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E7-MJMATHI-4F" x="0" y="0"></use><use transform="scale(0.707)" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E7-MJMAIN-32" x="1079" y="-213"></use></g></g></svg></span><script type="math/tex" id="MathJax-Element-7">Si-SiO_{2}</script>界面，PPD的光感度更高。</li><li>由于p-n-p的双结结构，PPD的电容更高，能产生更高的动态范围。</li><li>由于<span class="MathJax_Preview"></span><span class="MathJax_SVG" id="MathJax-Element-7-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="10.264ex" height="2.298ex" viewBox="0 -780.1 4419 989.6" role="img" focusable="false" style="vertical-align: -0.487ex;"><defs><path stroke-width="0" id="E7-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path><path stroke-width="0" id="E7-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E7-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path stroke-width="0" id="E7-MJMATHI-4F" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path><path stroke-width="0" id="E7-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E7-MJMATHI-53" x="0" y="0"></use><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E7-MJMATHI-69" x="645" y="0"></use><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E7-MJMAIN-2212" x="1212" y="0"></use><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E7-MJMATHI-53" x="2212" y="0"></use><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E7-MJMATHI-69" x="2857" y="0"></use><g transform="translate(3202,0)"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E7-MJMATHI-4F" x="0" y="0"></use><use transform="scale(0.707)" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E7-MJMAIN-32" x="1079" y="-213"></use></g></g></svg></span><script type="math/tex" id="MathJax-Element-7">Si-SiO_{2}</script>界面由一层<span class="MathJax_Preview"></span><span class="MathJax_SVG" id="MathJax-Element-8-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.769ex" height="2.539ex" viewBox="-39 -832 1192.1 1093.4" role="img" focusable="false" style="vertical-align: -0.607ex; margin-left: -0.091ex;"><defs><path stroke-width="0" id="E8-MJMATHI-70" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z"></path><path stroke-width="0" id="E8-MJMAIN-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E8-MJMATHI-70" x="0" y="0"></use><use transform="scale(0.707)" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#E8-MJMAIN-2B" x="711" y="513"></use></g></svg></span><script type="math/tex" id="MathJax-Element-8">p^+</script>覆盖，减小了暗电流。</li></ul><p>由于PPD像素结构在暗电流和噪声方面的优异表现，近年来市面上的CMOS传感器都是以PPD结构为主。但是，PPD结构有4个晶体管，有的设计甚至有5个，这大大降低了像素的填充因子（即感光区占整个像素面积的比值），这会影响传感器的光电转换效率，进而影响传感器的噪声表现。在PPD结构中，像素的感光区和读出电路由TX晶体管隔开，相邻像素减可以共用读出电路（如图2.6）。图2.6所示的2x2像素共享读出电路，一共有7个晶体管，平均一个像素1.75个晶体管。这样可以大大减少每个像素中读出电路占用的面积，可以提高填充因子，这样可以使得像素面积更小（比如1微米）。然而，由于这2x2个像素的结构不再一致，会导致固定模式噪声的出现（FPN），这需要在后续图像处理中消除。</p><p><img src='https://github.com/ShenQM/blogs/blob/master/CMOS%E4%BC%A0%E6%84%9F%E5%99%A8/CMOS%20%E5%9B%BE%E5%83%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E7%AE%80%E4%BB%8B.assets/shared_ppd.PNG?raw=true' alt='shared_ppd' referrerPolicy='no-referrer' /></p><p><center>图2.6 共享读出电路的PPD像素结构</center></p><h2><a name='header-n174' class='md-header-anchor '></a>3.总结</h2><p>　　本文主要介绍了以下三个方面：</p><ol start='' ><li>CMOS图像传感器的整体架构。阐明了其基本模块：像素整列、读出电路、模拟信号处理以及模数转换模块。</li><li>CMOS图像传感器的PN结像素结构。这里主要介绍了CMOS在发展初期的以中像素结构，但是它存在高暗电流和噪声的问题，在90年代中期始终无法与CCD在高端成像领域竞争。</li><li>CMOS图像传感器的PPD像素结构。介绍了PPD像素中感光区域与读出电路的分离，从而使得CDS能用于图像信号的读出，引发了CMOS图像传感器的变革。这大大减少了CMOS传感器的噪声和暗电流，使得CMOS传感器赶上并超越CCD，成为相机传感器的主流。</li><li>介绍了PPD像素结构共享读出电路的方式。由于PPD读出电路复杂，减小了像素的感光区填充因子，引入了读出电路共享方式。该技术能够进一步减少像素的面积，目前已知的有1微米大小的像素。</li></ol><p>文中主要介绍了像素结构的基础，后续会继续更新一些CMOS传感器的知识。</p><h2><a name='header-n192' class='md-header-anchor '></a>参考文献</h2><p>[1] Albert THEUWISSEN. CMOS Image Sensors : State-Of-The-Art and Future Perspectives. <a href='https://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp?punumber=4430869'>ESSDERC 2007 - 37th European Solid State Device Research Conference</a> </p><p>[2] Junichi Nakamura etc. Image Sensors and Signal Processing for Digital Still Cameras. 2006. Taylor &amp; Francis</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
+</body>
+</html>
